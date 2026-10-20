@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link'
 import { MessageCircle, MapPin, Phone, Mail, Clock } from 'lucide-react'
@@ -119,7 +119,7 @@ export default function Footer() {
             <ul className="space-y-2.5 font-sans text-xs sm:text-sm text-white/60">
               <li><Link href="/layanan" className="hover:text-white transition-colors">Kaos Satuan</Link></li>
               <li><Link href="/layanan" className="hover:text-white transition-colors">Pesanan Kelompok / Seragam</Link></li>
-              <li><Link href="/layanan#pelatihan" className="hover:text-white transition-colors">Pelatihan Sablon</Link></li>
+              <li><Link href="/pelatihan" className="hover:text-white transition-colors">Pelatihan Sablon</Link></li>
             </ul>
           </div>
 
@@ -158,8 +158,8 @@ export default function Footer() {
               <li className="flex items-start gap-2.5 pt-1 text-white/40">
                 <Clock size={15} className="text-[#8A63FF] shrink-0 mt-0.5" />
                 <div>
-                  <p>Senin – Sabtu</p>
-                  <p>09.00 – 17.00 WIB</p>
+                  <p>Senin â€“ Sabtu</p>
+                  <p>09.00 â€“ 17.00 WIB</p>
                 </div>
               </li>
             </ul>
@@ -169,7 +169,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-white/40">
-          <p>© {year} KUB Dollyverse. Semua hak dilindungi.</p>
+          <p>Â© {year} KUB Dollyverse. Semua hak dilindungi.</p>
           <div className="flex items-center gap-2">
             <span>Sablon Digital DTF & Sublimasi Surabaya</span>
             <span className="w-4 h-0.5 bg-[#8A63FF] rounded-full inline-block" />
@@ -180,3 +180,4 @@ export default function Footer() {
     </footer>
   )
 }
+

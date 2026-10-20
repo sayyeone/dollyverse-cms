@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
@@ -11,7 +11,7 @@ const navLinks = [
   { href: '/', label: 'Beranda' },
   { href: '/produk', label: 'Produk' },
   { href: '/layanan', label: 'Custom' },
-  { href: '/layanan#pelatihan', label: 'Pelatihan' },
+  { href: '/pelatihan', label: 'Pelatihan' },
   { href: '/tentang', label: 'Tentang Kami' },
   { href: '/kontak', label: 'Kontak' },
 ]
@@ -43,7 +43,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo rounded-lg"
-            aria-label="KUB Dollyverse — Ke Beranda"
+            aria-label="KUB Dollyverse â€” Ke Beranda"
           >
             <img
               src="/logo-2.png"
@@ -117,3 +117,4 @@ export default function Navbar() {
     </>
   )
 }
+
