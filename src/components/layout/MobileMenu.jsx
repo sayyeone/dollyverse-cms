@@ -36,9 +36,13 @@ export default function MobileMenu({ isOpen, open, onClose, links, currentPath }
         aria-label="Menu navigasi"
         className={`fixed inset-y-0 right-0 z-50 w-72 max-w-full bg-navy shadow-2xl flex flex-col transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-white/10">
-          <span className="font-heading font-extrabold text-white text-lg">Dollyverse</span>
+        {/* Header with /logo-2.png */}
+        <div className="flex items-center justify-between p-5 border-b border-white/10 bg-black/20">
+          <img
+            src="/logo-2.png"
+            alt="Logo KUB Dollyverse"
+            className="h-8 w-auto object-contain"
+          />
           <button
             type="button"
             onClick={onClose}

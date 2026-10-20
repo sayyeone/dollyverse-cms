@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, ThumbsUp, ShoppingBag, ArrowRight } from 'lucide-react'
+import { Menu, ArrowRight } from 'lucide-react'
 import { useScrollPosition } from '../../hooks/useScrollPosition'
 import MobileMenu from './MobileMenu'
 
@@ -31,27 +31,26 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           solid
-            ? 'bg-white/90 backdrop-blur-md shadow-sm py-3 border-b border-gray-200/60'
-            : 'bg-transparent py-4 md:py-6'
+            ? 'bg-white/95 backdrop-blur-md shadow-sm py-2.5 border-b border-gray-200/60'
+            : 'bg-transparent py-4 md:py-5'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo with /logo-2.png */}
           <Link
             href="/"
-            className="flex items-center gap-1.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo rounded-lg"
+            className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo rounded-lg"
             aria-label="KUB Dollyverse — Ke Beranda"
           >
-            <span className="font-heading font-black text-ink text-xl md:text-2xl tracking-tighter uppercase">
-              KUB DOLLYVERSE
-            </span>
-            <div className="w-6 h-6 rounded-full bg-gold flex items-center justify-center text-ink shadow-xs group-hover:scale-110 transition-transform">
-              <ThumbsUp size={13} className="fill-ink" />
-            </div>
+            <img
+              src="/logo-2.png"
+              alt="Logo KUB Dollyverse"
+              className="h-9 md:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1 bg-white/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
+          <div className="hidden lg:flex items-center gap-1 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
             {navLinks.map((link) => {
               const active = pathname === link.href
               return (
