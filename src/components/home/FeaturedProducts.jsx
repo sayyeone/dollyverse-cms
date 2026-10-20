@@ -1,137 +1,188 @@
 'use client';
 
-import { motion } from 'framer-motion'
-import SectionHeading from '../ui/SectionHeading'
-import Button from '../ui/Button'
-import Badge from '../ui/Badge'
-import { featuredProducts as defaultProducts } from '../../data/products'
-import { buildWaUrl } from '../../data/contact'
-import { urlFor } from '@/sanity/client'
+import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { urlFor } from '@/sanity/client';
 
-function formatRupiah(n) {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n)
-}
-
-const defaultProductImages = {
-  'kaos-custom': '/product-kaos.png',
-  'mug': '/product-mug.png',
-  'tote-bag': '/product-totebag.png',
-  'tumbler': '/product-tumbler.png',
-}
+const defaultCatalog = [
+  {
+    num: '01',
+    name: 'KAOS CUSTOM',
+    desc: 'Regular & oversized',
+    imageSrc: '/product-kaos.png',
+  },
+  {
+    num: '02',
+    name: 'POLO SHIRT',
+    desc: 'Untuk komunitas dan kantor',
+    imageSrc: '/mockup-1.png',
+  },
+  {
+    num: '03',
+    name: 'HOODIE',
+    desc: 'Nyaman, desain bebas',
+    imageSrc: '/product-kaos.png',
+  },
+  {
+    num: '04',
+    name: 'JERSEY',
+    desc: 'Untuk tim dan event',
+    imageSrc: '/product-kaos.png',
+  },
+  {
+    num: '05',
+    name: 'TOTE BAG',
+    desc: 'Canvas dan drill',
+    imageSrc: '/product-totebag.png',
+  },
+  {
+    num: '06',
+    name: 'MUG & TUMBLER',
+    desc: 'Souvenir acara & kantor',
+    imageSrc: '/product-mug.png',
+  },
+];
 
 export default function FeaturedProducts({ sanityProducts = [] }) {
-  // Jika di Sanity ada produk featured, gunakan itu. Jika belum ada, gunakan mock default!
+  const scrollRef = useRef(null);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 320;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
   const hasSanity = sanityProducts && sanityProducts.length > 0;
-  
-  const displayProducts = hasSanity
-    ? sanityProducts.map((p) => ({
-        id: p._id,
-        name: p.name,
-        category: p.category,
-        price: p.price,
-        priceLabel: p.priceLabel || 'Mulai dari',
-        badge: p.badge,
+  const products = hasSanity
+    ? sanityProducts.map((p, idx) => ({
+        num: String(idx + 1).padStart(2, '0'),
+        name: p.name.toUpperCase(),
+        desc: p.category || 'Custom merchandise',
         imageSrc: p.image ? urlFor(p.image)?.url() : '/product-kaos.png',
-        imageAlt: p.imageAlt || p.name,
-        waText: p.waText || `Halo Dollyverse, saya mau tanya harga untuk produk: ${p.name}`,
       }))
-    : defaultProducts.map((p) => ({
-        id: p.id,
-        name: p.name,
-        category: p.category,
-        price: p.price,
-        priceLabel: p.priceLabel,
-        badge: p.badge,
-        imageSrc: defaultProductImages[p.id] || '/product-kaos.png',
-        imageAlt: p.imageAlt,
-        waText: p.waText,
-      }));
+    : defaultCatalog;
 
   return (
-    <section id="produk-unggulan" className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5 }}
-          >
-            <SectionHeading
-              eyebrow="Produk Unggulan"
-              title="Custom Sesukamu, Mulai 1 Pcs"
-            />
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Button variant="text" href="/produk">
-              Lihat Semua Produk
-            </Button>
-          </motion.div>
-        </div>
+    <section id="produk-unggulan" className="py-20 md:py-28 bg-[#FAF9FF] relative overflow-hidden border-t border-purple-100">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 rounded-full bg-violet/10 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-96 h-96 rounded-full bg-indigo/5 blur-3xl pointer-events-none" />
 
-        {/* Cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {displayProducts.map((product, i) => (
-            <motion.article
-              key={product.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group bg-white rounded-2xl overflow-hidden border border-lilac/60 shadow-sm hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300 flex flex-col"
+      <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
+        
+        {/* ================= HEADER SECTION ================= */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            {/* Eyebrow */}
+            <div className="flex items-center gap-2 text-indigo font-heading font-extrabold text-xs uppercase tracking-widest mb-3">
+              <span className="w-8 h-0.5 bg-indigo rounded-full" />
+              <span>PRODUK UNGGULAN</span>
+            </div>
+
+            {/* Headline with Block Badge Sticker */}
+            <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink leading-tight">
+              PILIH PRODUK <br />
+              <span className="inline-block bg-[#8A63FF] text-white px-4 py-1 rounded-xl shadow-sm -rotate-1 mt-1">
+                CUSTOMMU.
+              </span>
+              <span className="inline-block ml-3 text-gold text-2xl md:text-3xl font-mono select-none">
+                彡
+              </span>
+            </h2>
+          </div>
+
+          {/* Right Button */}
+          <div>
+            <Link
+              href="/produk"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-indigo/30 bg-white hover:bg-indigo hover:text-white text-indigo font-heading font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-2xs hover:shadow-md group"
             >
-              {/* Image */}
-              <div className="relative aspect-square overflow-hidden bg-lilac/40">
-                <img
-                  src={product.imageSrc}
-                  alt={product.imageAlt}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                {product.badge && (
-                  <div className="absolute top-3 left-3">
-                    <Badge>{product.badge}</Badge>
-                  </div>
-                )}
-              </div>
-
-              {/* Body */}
-              <div className="p-4 flex flex-col gap-2 flex-1">
-                <span className="text-xs font-semibold text-indigo uppercase tracking-widest">
-                  {product.category}
-                </span>
-                <h3 className="font-heading font-bold text-navy text-base leading-snug">
-                  {product.name}
-                </h3>
-                <div className="mt-auto pt-2">
-                  <div className="text-gray-400 text-xs">{product.priceLabel}</div>
-                  <div className="font-heading font-extrabold text-indigo text-lg leading-none">
-                    {formatRupiah(product.price)}
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA */}
-              <div className="px-4 pb-4">
-                <a
-                  href={buildWaUrl(product.waText)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center w-full py-2 rounded-xl border-2 border-indigo text-indigo text-sm font-semibold hover:bg-indigo hover:text-white transition-colors duration-200"
-                >
-                  Tanya Harga
-                </a>
-              </div>
-            </motion.article>
-          ))}
+              <span>Lihat Semua Produk</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
+
+        {/* ================= CAROUSEL / HORIZONTAL SCROLL CARDS ================= */}
+        <div className="relative">
+          
+          {/* Navigation Arrows (Float Left & Right) */}
+          <button
+            type="button"
+            onClick={() => scroll('left')}
+            className="hidden md:flex absolute -left-5 top-[40%] -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-purple-100 text-indigo items-center justify-center hover:bg-indigo hover:text-white transition-all duration-200 hover:scale-110 active:scale-95"
+            aria-label="Scroll ke kiri"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <button
+            type="button"
+            onClick={() => scroll('right')}
+            className="hidden md:flex absolute -right-5 top-[40%] -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-purple-100 text-indigo items-center justify-center hover:bg-indigo hover:text-white transition-all duration-200 hover:scale-110 active:scale-95"
+            aria-label="Scroll ke kanan"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          {/* Scrollable Container */}
+          <div
+            ref={scrollRef}
+            className="flex gap-5 md:gap-6 overflow-x-auto pb-8 pt-2 scrollbar-none snap-x snap-mandatory"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {products.map((item) => (
+              <motion.article
+                key={item.num}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.25 }}
+                className="shrink-0 w-64 sm:w-72 md:w-80 bg-white rounded-2xl p-3 md:p-3.5 border-2 border-navy/90 shadow-[0_8px_0_0_#2F3552] flex flex-col justify-between snap-start group"
+              >
+                {/* Image Window Frame */}
+                <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
+                  <img
+                    src={item.imageSrc}
+                    alt={item.name}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Card Body */}
+                <div className="p-3 pt-4 space-y-1">
+                  {/* Number 01-05 */}
+                  <span className="font-heading font-black text-xl md:text-2xl text-[#8A63FF] block leading-none">
+                    {item.num}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="font-heading font-black text-base md:text-lg text-ink leading-tight pt-1">
+                    {item.name}
+                  </h3>
+
+                  {/* Subtitle */}
+                  <p className="font-sans text-xs md:text-sm text-gray-500">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {/* Bottom Purple Progress Line Accent */}
+          <div className="w-full h-1.5 bg-gray-200/80 rounded-full overflow-hidden mt-2">
+            <div className="w-1/3 h-full bg-[#8A63FF] rounded-full" />
+          </div>
+
+        </div>
+
       </div>
     </section>
-  )
+  );
 }
