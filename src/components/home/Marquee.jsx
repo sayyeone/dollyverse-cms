@@ -4,17 +4,17 @@ import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 const marqueeItems = [
   { text: 'DOLLYVERSE', isArrow: false },
-  { text: '◀◀◀', isArrow: true },
+  { text: '<<<', isArrow: true },
   { text: 'SABLON DIGITAL MURAH', isArrow: false },
-  { text: '▶▶▶', isArrow: true },
+  { text: '>>>', isArrow: true },
   { text: 'DESAIN OTENTIK', isArrow: false },
-  { text: '◀◀◀', isArrow: true },
+  { text: '<<<', isArrow: true },
   { text: 'DARI KAMPUNG DOLLY', isArrow: false },
-  { text: '▶▶▶', isArrow: true },
+  { text: '>>>', isArrow: true },
   { text: 'KAOS CUSTOM SATUAN', isArrow: false },
-  { text: '◀◀◀', isArrow: true },
+  { text: '<<<', isArrow: true },
   { text: 'MERCHANDISE TERJANGKAU', isArrow: false },
-  { text: '▶▶▶', isArrow: true },
+  { text: '>>>', isArrow: true },
 ]
 
 export default function Marquee() {

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { motion } from 'framer-motion'
 import StatCounter from '../shared/StatCounter'
@@ -19,12 +19,12 @@ export default function AboutTeaser({ settings }) {
       <div className="absolute top-1/2 -left-20 -translate-y-1/2 w-96 h-96 rounded-full bg-violet/10 blur-3xl pointer-events-none" />
       <div className="absolute top-10 right-10 w-[500px] h-[500px] rounded-full bg-indigo/5 blur-3xl pointer-events-none" />
 
-      {/* Floating Sparkles Vector Decor */}
+      {/* Floating Sparkles Lucide Icons instead of raw broken unicode */}
       <div className="absolute top-12 right-[36%] text-violet/40 pointer-events-none select-none hidden lg:block animate-pulse">
-        âœ¦
+        <Sparkles size={20} />
       </div>
       <div className="absolute bottom-16 right-[15%] text-gold/50 pointer-events-none select-none hidden lg:block">
-        âœ¦
+        <Sparkles size={16} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
@@ -44,12 +44,14 @@ export default function AboutTeaser({ settings }) {
               <span>TENTANG KAMI</span>
             </div>
 
-            {/* Heading */}
+            {/* Heading with Lucide Sparkles */}
             <div className="space-y-2 relative">
               <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-ink leading-[1.15]">
                 Cerita tentang <br />
                 <span className="text-indigo">Kampung Dolly</span>
-                <span className="inline-block ml-2 text-violet">âœ¦</span>
+                <span className="inline-flex items-center ml-2 text-violet align-middle">
+                  <Sparkles size={26} />
+                </span>
               </h2>
             </div>
 
@@ -124,10 +126,9 @@ export default function AboutTeaser({ settings }) {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-6 relative flex items-center justify-center pt-8 pb-6 lg:py-0"
           >
-            {/* Collage Container */}
             <div className="relative w-full max-w-[540px] aspect-[4/3] flex items-center justify-center">
 
-              {/* 1. Main Workshop Card (Centered Big Card) */}
+              {/* 1. Main Workshop Card */}
               <div className="relative z-10 w-[78%] h-[82%] rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
                 <img
                   src="/gallery-produksi.png"
@@ -139,7 +140,7 @@ export default function AboutTeaser({ settings }) {
                 </div>
               </div>
 
-              {/* 2. Top-Right Angled Polaroid Card */}
+              {/* 2. Top-Right Polaroid Card */}
               <div className="absolute -top-3 right-0 z-20 w-[42%] bg-white p-2.5 pb-4 rounded-2xl shadow-xl border-2 border-white rotate-[8deg] hover:rotate-2 transition-transform duration-300">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gray-100">
                   <img
@@ -150,7 +151,7 @@ export default function AboutTeaser({ settings }) {
                 </div>
               </div>
 
-              {/* 3. Bottom-Right Angled Polaroid Card */}
+              {/* 3. Bottom-Right Polaroid Card */}
               <div className="absolute -bottom-6 right-2 z-20 w-[46%] bg-white p-2.5 pb-4 rounded-2xl shadow-xl border-2 border-white rotate-[4deg] hover:rotate-0 transition-transform duration-300">
                 <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mb-2">
                   <img
@@ -165,7 +166,7 @@ export default function AboutTeaser({ settings }) {
                 <div className="w-10 h-0.5 bg-violet mt-1 rounded-full" />
               </div>
 
-              {/* 4. Top Floating Badge: "Dari Komunitas Untuk Komunitas" */}
+              {/* 4. Top Floating Badge */}
               <div className="absolute top-2 left-4 z-20 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl shadow-lg border border-gray-100 flex items-center gap-2.5 -rotate-[3deg]">
                 <div className="w-6 h-6 rounded-lg bg-violet/15 text-indigo flex items-center justify-center">
                   <Heart size={14} className="fill-indigo" />
@@ -176,13 +177,13 @@ export default function AboutTeaser({ settings }) {
                 </div>
               </div>
 
-              {/* 5. Right Floating Badge: "Bertumbuh Bersama" */}
+              {/* 5. Right Floating Badge */}
               <div className="absolute top-[42%] right-[-10px] z-30 bg-indigo text-white px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-2">
                 <TrendingUp size={15} className="text-[#8A63FF]" />
                 <span className="text-xs font-heading font-bold">Bertumbuh Bersama</span>
               </div>
 
-              {/* 6. MASCOT DOLLYVERSE (Peeking & Sitting in front of cards) */}
+              {/* 6. MASCOT DOLLYVERSE */}
               <motion.div
                 initial={{ y: 20, opacity: 0, scale: 0.9 }}
                 whileInView={{ y: 0, opacity: 1, scale: 1 }}
@@ -205,4 +206,3 @@ export default function AboutTeaser({ settings }) {
     </section>
   )
 }
-
