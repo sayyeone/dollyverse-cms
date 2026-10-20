@@ -88,17 +88,6 @@ export default function WhyUs() {
               Kami percaya bahwa sablon bukan sekadar produk, tapi juga kesempatan untuk tumbuh bersama komunitas. Dollyverse hadir dengan pendekatan yang lebih inklusif, terjangkau, dan berdampak nyata bagi warga Kampung Dolly.
             </p>
 
-            {/* CTA Button */}
-            <div>
-              <Link
-                href="/tentang"
-                className="inline-flex items-center gap-3 bg-ink hover:bg-navy text-white font-heading font-bold text-sm px-7 py-3.5 rounded-full shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
-              >
-                <span>Kenali Kami Lebih Dekat</span>
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-
             {/* Visual Photo Card with Tape & Annotation */}
             <div className="relative pt-6 max-w-sm">
               <div className="absolute -top-1 left-2 z-20 text-[11px] font-sans font-semibold text-gray-400 rotate-[-8deg] flex items-center gap-1 pointer-events-none">
