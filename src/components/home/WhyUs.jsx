@@ -1,15 +1,13 @@
 'use client';
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { 
   Users, 
   ShieldCheck, 
   Coins, 
   BookOpen, 
   Settings, 
-  MessageSquare, 
-  ArrowRight
+  MessageSquare
 } from 'lucide-react'
 
 const features = [
@@ -88,8 +86,8 @@ export default function WhyUs() {
               Kami percaya bahwa sablon bukan sekadar produk, tapi juga kesempatan untuk tumbuh bersama komunitas. Dollyverse hadir dengan pendekatan yang lebih inklusif, terjangkau, dan berdampak nyata bagi warga Kampung Dolly.
             </p>
 
-            {/* Visual Photo Card with Tape & Annotation */}
-            <div className="relative pt-6 max-w-sm">
+            {/* Visual Photo Card dengan jarak ekstra (mt-8 sm:mt-12) dari paragraf */}
+            <div className="relative mt-8 sm:mt-12 pt-6 max-w-sm">
               <div className="absolute -top-1 left-2 z-20 text-[11px] font-sans font-semibold text-gray-400 rotate-[-8deg] flex items-center gap-1 pointer-events-none">
                 <span>Dari Komunitas Untuk Komunitas</span>
                 <span className="text-sm">⤵</span>
