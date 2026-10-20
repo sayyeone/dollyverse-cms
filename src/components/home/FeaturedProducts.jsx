@@ -79,9 +79,9 @@ export default function FeaturedProducts({ sanityProducts = [] }) {
         {/* ================= HEADER SECTION ================= */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            {/* Eyebrow */}
-            <div className="flex items-center gap-2 text-indigo font-heading font-extrabold text-xs uppercase tracking-widest mb-3">
-              <span className="w-8 h-0.5 bg-indigo rounded-full" />
+            {/* Eyebrow Pill Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#ECE7FE] text-indigo text-xs font-heading font-extrabold px-4 py-1.5 rounded-full w-max shadow-2xs mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo" />
               <span>PRODUK UNGGULAN</span>
             </div>
 
