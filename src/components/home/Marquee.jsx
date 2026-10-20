@@ -1,56 +1,57 @@
-﻿'use client';
-// src/components/home/Marquee.jsx
+'use client';
+
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
-const marqueeText = [
-  'Dollyverse',
-  'â—€â—€â—€',
-  'Sablon Digital Murah',
-  'â–¶â–¶â–¶',
-  'Desain Otentik',
-  'â—€â—€â—€',
-  'Dari Kampung Dolly',
-  'â–¶â–¶â–¶',
-  'Kaos Custom Satuan',
-  'â—€â—€â—€',
-  'Merchandise Terjangkau',
-  'â–¶â–¶â–¶',
+const marqueeItems = [
+  { text: 'DOLLYVERSE', isArrow: false },
+  { text: '◀◀◀', isArrow: true },
+  { text: 'SABLON DIGITAL MURAH', isArrow: false },
+  { text: '▶▶▶', isArrow: true },
+  { text: 'DESAIN OTENTIK', isArrow: false },
+  { text: '◀◀◀', isArrow: true },
+  { text: 'DARI KAMPUNG DOLLY', isArrow: false },
+  { text: '▶▶▶', isArrow: true },
+  { text: 'KAOS CUSTOM SATUAN', isArrow: false },
+  { text: '◀◀◀', isArrow: true },
+  { text: 'MERCHANDISE TERJANGKAU', isArrow: false },
+  { text: '▶▶▶', isArrow: true },
 ]
 
 export default function Marquee() {
   const reduced = useReducedMotion()
 
-  const track = marqueeText.map((text, i) => (
-    <span
-      key={i}
-      className={`whitespace-nowrap font-heading font-extrabold uppercase text-sm md:text-base tracking-widest px-4 ${
-        text === 'â—€â—€â—€' || text === 'â–¶â–¶â–¶'
-          ? 'text-gold'
-          : text === 'Dollyverse'
-          ? 'text-white'
-          : 'text-white/60'
-      }`}
-    >
-      {text}
-    </span>
-  ))
+  const renderTrack = (keyPrefix) => (
+    <div key={keyPrefix} className="flex shrink-0 items-center">
+      {marqueeItems.map((item, i) => (
+        <span
+          key={`${keyPrefix}-${i}`}
+          className={`whitespace-nowrap font-heading font-extrabold uppercase text-xs md:text-sm tracking-widest px-4 ${
+            item.isArrow
+              ? 'text-gold'
+              : item.text === 'DOLLYVERSE'
+              ? 'text-white'
+              : 'text-white/70'
+          }`}
+        >
+          {item.text}
+        </span>
+      ))}
+    </div>
+  )
 
   return (
     <div
       id="marquee"
-      className="bg-navy/90 border-y border-white/10 py-4 overflow-hidden"
+      className="bg-navy border-y border-white/10 py-3.5 overflow-hidden select-none"
       aria-hidden="true"
     >
       <div
-        className={`flex gap-0 ${reduced ? '' : 'animate-marquee'}`}
+        className={`flex w-max ${reduced ? '' : 'animate-marquee'}`}
         style={reduced ? {} : { willChange: 'transform' }}
       >
-        {/* Duplicated for seamless loop */}
-        <div className="flex shrink-0 gap-0">{track}</div>
-        <div className="flex shrink-0 gap-0" aria-hidden="true">{track}</div>
-        <div className="flex shrink-0 gap-0" aria-hidden="true">{track}</div>
+        {renderTrack('track-1')}
+        {renderTrack('track-2')}
       </div>
     </div>
   )
 }
-
