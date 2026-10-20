@@ -24,7 +24,8 @@ export default function Navbar() {
   // Close menu on route change
   useEffect(() => setMenuOpen(false), [pathname])
 
-  const solid = scrollY > 40
+  const solid = scrollY > 20
+  const isDarkPage = pathname !== '/' // Halaman selain beranda memiliki header gelap (navy)
 
   return (
     <>
@@ -32,11 +33,13 @@ export default function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           solid
             ? 'bg-white/95 backdrop-blur-md shadow-sm py-2.5 border-b border-gray-200/60'
+            : isDarkPage
+            ? 'bg-navy/80 backdrop-blur-md py-3 md:py-4 border-b border-white/10'
             : 'bg-transparent py-4 md:py-5'
         }`}
       >
         <nav className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
-          {/* Logo with /logo-2.png */}
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo rounded-lg"
@@ -45,12 +48,18 @@ export default function Navbar() {
             <img
               src="/logo-2.png"
               alt="Logo KUB Dollyverse"
-              className="h-9 md:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+              className={`h-9 md:h-11 w-auto object-contain transition-all duration-200 group-hover:scale-105 ${
+                !solid && isDarkPage ? 'brightness-0 invert' : ''
+              }`}
             />
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-gray-200/60 shadow-xs">
+          <div className={`hidden lg:flex items-center gap-1 backdrop-blur-md px-3 py-1.5 rounded-full border shadow-xs transition-colors ${
+            !solid && isDarkPage 
+              ? 'bg-white/10 border-white/15 text-white' 
+              : 'bg-white/80 border-gray-200/60'
+          }`}>
             {navLinks.map((link) => {
               const active = pathname === link.href
               return (
@@ -59,8 +68,8 @@ export default function Navbar() {
                   href={link.href}
                   className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 ${
                     active
-                      ? 'bg-ink text-white shadow-xs'
-                      : 'text-ink/80 hover:text-ink hover:bg-black/5'
+                      ? (!solid && isDarkPage ? 'bg-white text-ink shadow-xs' : 'bg-ink text-white shadow-xs')
+                      : (!solid && isDarkPage ? 'text-white/80 hover:text-white hover:bg-white/10' : 'text-ink/80 hover:text-ink hover:bg-black/5')
                   }`}
                 >
                   {link.label}
@@ -73,7 +82,11 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/produk"
-              className="hidden sm:inline-flex items-center gap-2 bg-ink hover:bg-navy text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all duration-200"
+              className={`hidden sm:inline-flex items-center gap-2 text-xs font-bold px-4 py-2.5 rounded-full shadow-xs hover:shadow-md transition-all duration-200 ${
+                !solid && isDarkPage
+                  ? 'bg-[#8A63FF] hover:bg-[#784eed] text-white'
+                  : 'bg-ink hover:bg-navy text-white'
+              }`}
             >
               <span>Pesan Custom</span>
               <ArrowRight size={14} />
@@ -83,7 +96,9 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMenuOpen(true)}
-              className="lg:hidden p-2 text-ink hover:bg-black/5 rounded-xl transition-colors"
+              className={`lg:hidden p-2 rounded-xl transition-colors ${
+                !solid && isDarkPage ? 'text-white hover:bg-white/10' : 'text-ink hover:bg-black/5'
+              }`}
               aria-label="Buka menu navigasi"
             >
               <Menu size={22} />
