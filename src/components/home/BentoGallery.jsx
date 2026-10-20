@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
@@ -159,7 +159,7 @@ export default function BentoGallery({ sanityGallery = [] }) {
               */}
               <div className="absolute inset-x-3 bottom-3 z-20 translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out pointer-events-none">
                 <div className="rounded-2xl p-4 md:p-5 bg-ink/75 backdrop-blur-xl border border-white/20 shadow-2xl flex flex-col gap-1.5 text-white">
-                  <span className="text-[#b8e820] font-sans font-bold text-[11px] md:text-xs tracking-wider uppercase">
+                  <span className="text-[#8A63FF] font-sans font-bold text-[11px] md:text-xs tracking-wider uppercase">
                     {item.category}
                   </span>
                   <h3 className="font-heading font-bold text-base md:text-lg text-white leading-snug">
@@ -188,3 +188,4 @@ export default function BentoGallery({ sanityGallery = [] }) {
     </section>
   );
 }
+

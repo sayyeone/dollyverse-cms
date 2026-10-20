@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { motion } from 'framer-motion'
 import StatCounter from '../shared/StatCounter'
@@ -21,10 +21,10 @@ export default function AboutTeaser({ settings }) {
 
       {/* Floating Sparkles Vector Decor */}
       <div className="absolute top-12 right-[36%] text-violet/40 pointer-events-none select-none hidden lg:block animate-pulse">
-        ✦
+        âœ¦
       </div>
       <div className="absolute bottom-16 right-[15%] text-gold/50 pointer-events-none select-none hidden lg:block">
-        ✦
+        âœ¦
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
@@ -49,7 +49,7 @@ export default function AboutTeaser({ settings }) {
               <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-ink leading-[1.15]">
                 Cerita tentang <br />
                 <span className="text-indigo">Kampung Dolly</span>
-                <span className="inline-block ml-2 text-violet">✦</span>
+                <span className="inline-block ml-2 text-violet">âœ¦</span>
               </h2>
             </div>
 
@@ -178,7 +178,7 @@ export default function AboutTeaser({ settings }) {
 
               {/* 5. Right Floating Badge: "Bertumbuh Bersama" */}
               <div className="absolute top-[42%] right-[-10px] z-30 bg-indigo text-white px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-2">
-                <TrendingUp size={15} className="text-[#b8e820]" />
+                <TrendingUp size={15} className="text-[#8A63FF]" />
                 <span className="text-xs font-heading font-bold">Bertumbuh Bersama</span>
               </div>
 
@@ -205,3 +205,4 @@ export default function AboutTeaser({ settings }) {
     </section>
   )
 }
+

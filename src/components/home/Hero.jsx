@@ -24,7 +24,7 @@ export default function Hero({ settings }) {
       aria-label="Hero section"
     >
       {/* Ambient Blur Glow Gradients */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[85vw] h-[550px] bg-gradient-to-b from-[#b8e820]/25 via-violet/15 to-transparent blur-3xl pointer-events-none z-0 rounded-full" />
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[85vw] h-[550px] bg-gradient-to-b from-[#8A63FF]/25 via-violet/15 to-transparent blur-3xl pointer-events-none z-0 rounded-full" />
       <div className="absolute top-1/3 right-10 w-96 h-96 bg-gold/15 blur-3xl pointer-events-none z-0 rounded-full" />
 
       {/* VERTICAL SERVICE INDEX */}
@@ -44,7 +44,7 @@ export default function Hero({ settings }) {
           <Link
             key={item.num}
             href={item.href}
-            className="group flex items-center justify-between gap-8 pl-3 py-2.5 border-l border-ink/20 hover:border-[#b8e820] transition-colors duration-200"
+            className="group flex items-center justify-between gap-8 pl-3 py-2.5 border-l border-ink/20 hover:border-[#8A63FF] transition-colors duration-200"
           >
             <span className="font-heading font-semibold text-sm text-ink/70 group-hover:text-ink transition-colors duration-200 whitespace-nowrap">
               {item.label}
@@ -67,7 +67,7 @@ export default function Hero({ settings }) {
           <span>KUB</span>
           <br />
           <span>
-            DOLLYVERSE<span className="text-[#b8e820]">.</span>
+            DOLLYVERSE<span className="text-[#8A63FF]">.</span>
           </span>
         </motion.h1>
 
@@ -76,7 +76,7 @@ export default function Hero({ settings }) {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="origin-left mt-2 ml-1 lg:ml-2 w-44 md:w-72 h-3 md:h-3.5 bg-[#b8e820] rounded-full shadow-sm"
+          className="origin-left mt-2 ml-1 lg:ml-2 w-44 md:w-72 h-3 md:h-3.5 bg-[#8A63FF] rounded-full shadow-sm"
         />
       </div>
 
@@ -105,7 +105,7 @@ export default function Hero({ settings }) {
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
                 href="/produk"
-                className="inline-flex items-center gap-3 bg-[#b8e820] hover:bg-[#c5f028] text-ink font-heading font-extrabold text-sm md:text-base lg:text-lg px-8 py-4 lg:px-10 lg:py-5 rounded-full shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
+                className="inline-flex items-center gap-3 bg-[#8A63FF] hover:bg-[#784eed] text-white font-heading font-extrabold text-sm md:text-base lg:text-lg px-8 py-4 lg:px-10 lg:py-5 rounded-full shadow-lg hover:shadow-[#8A63FF]/30 hover:scale-105 active:scale-95 transition-all duration-200"
               >
                 <span>Lihat Produk</span>
                 <ArrowRight size={20} />
@@ -144,7 +144,7 @@ export default function Hero({ settings }) {
             {/* Bottom Right Floating Action Orb */}
             <Link
               href="/layanan"
-              className="absolute -bottom-6 right-0 lg:right-4 z-30 w-28 h-28 md:w-32 md:h-32 rounded-full bg-[#b8e820] text-ink font-heading font-black text-xs md:text-sm p-4 flex flex-col items-center justify-center text-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group border-4 border-white"
+              className="absolute -bottom-6 right-0 lg:right-4 z-30 w-28 h-28 md:w-32 md:h-32 rounded-full bg-[#8A63FF] text-white font-heading font-black text-xs md:text-sm p-4 flex flex-col items-center justify-center text-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group border-4 border-white"
             >
               <span className="text-lg md:text-xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
                 ↗
@@ -180,7 +180,7 @@ export default function Hero({ settings }) {
                 <X size={20} />
               </button>
               <h3 className="font-heading font-bold text-xl text-white mb-4 flex items-center gap-2">
-                <Sparkles className="text-[#b8e820]" size={20} />
+                <Sparkles className="text-[#8A63FF]" size={20} />
                 Profil KUB Dollyverse Surabaya
               </h3>
               <div className="aspect-video w-full rounded-2xl overflow-hidden bg-black flex items-center justify-center border border-white/10">
