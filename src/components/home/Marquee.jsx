@@ -27,12 +27,12 @@ export default function Marquee() {
         return (
           <span
             key={`${keyPrefix}-${i}`}
-            className={`whitespace-nowrap font-heading font-extrabold uppercase text-xs md:text-sm tracking-widest px-4 ${
+            className={`whitespace-nowrap font-heading font-black uppercase tracking-wider px-6 md:px-8 ${
               isStar
-                ? 'text-gold text-sm md:text-base'
+                ? 'text-gold text-2xl md:text-3xl drop-shadow-sm select-none'
                 : text === 'DOLLYVERSE'
-                ? 'text-white'
-                : 'text-white/70'
+                ? 'text-white text-lg sm:text-xl md:text-2xl'
+                : 'text-white/80 text-lg sm:text-xl md:text-2xl'
             }`}
           >
             {text}
@@ -45,11 +45,11 @@ export default function Marquee() {
   return (
     <div
       id="marquee"
-      className="bg-navy border-y border-white/10 py-3.5 overflow-hidden select-none"
+      className="bg-navy border-y-2 border-white/15 py-4 md:py-5 overflow-hidden select-none shadow-inner"
       aria-hidden="true"
     >
       <div
-        className={`flex w-max ${reduced ? '' : 'animate-marquee'}`}
+        className={`flex w-max items-center ${reduced ? '' : 'animate-marquee'}`}
         style={reduced ? {} : { willChange: 'transform' }}
       >
         {renderTrack('track-1')}
