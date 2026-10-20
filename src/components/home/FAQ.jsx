@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, HelpCircle } from 'lucide-react';
+import { Plus, Minus } from 'lucide-react';
 
 const faqs = [
   {
@@ -25,80 +25,99 @@ const faqs = [
     q: 'Di mana lokasi workshop Dollyverse jika ingin konsultasi langsung?',
     a: 'Kami memiliki 2 lokasi di Putat Jaya Surabaya: Balai RW 12 (pusat sablon digital & merchandise) dan eks-Wisma Barbara Lantai 3 (pusat sablon manual & pelatihan).',
   },
+  {
+    q: 'Apakah Dollyverse melayani pengiriman ke luar kota Surabaya?',
+    a: 'Ya, kami melayani pengiriman ke seluruh wilayah Indonesia melalui ekspedisi terpercaya dengan packing yang aman dan rapi.',
+  },
 ];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white border-t border-gray-200/80">
-      <div className="max-w-4xl mx-auto px-4 md:px-8">
-        {/* Header */}
-        <div className="text-center flex flex-col items-center gap-3 mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lilac/70 text-indigo font-heading font-bold text-xs uppercase tracking-wider">
-            <HelpCircle size={14} />
-            Pertanyaan Umum
-          </div>
-          <h2 className="font-heading font-black text-3xl sm:text-4xl text-ink">
-            Kerap Ditanyakan <span className="text-indigo">(FAQ)</span>
-          </h2>
-          <p className="text-gray-600 font-sans text-sm md:text-base max-w-lg">
-            Hal-hal yang sering ditanyakan seputar pemesanan kaos custom, sablon, dan cara order.
-          </p>
-        </div>
+    <section id="faq" className="py-24 md:py-32 bg-white border-t border-gray-200/80">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* ================= SISI KIRI (STICKY HEADLINE) ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 lg:sticky lg:top-32 space-y-4"
+          >
+            {/* Pill Eyebrow */}
+            <div className="inline-flex items-center gap-2 bg-[#ECE7FE] text-indigo text-xs font-heading font-extrabold px-4 py-1.5 rounded-full w-max shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo" />
+              <span>PERTANYAAN UMUM</span>
+            </div>
 
-        {/* Accordion List */}
-        <div className="flex flex-col gap-3.5">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
-                  isOpen
-                    ? 'border-indigo/40 bg-lilac/10 shadow-sm'
-                    : 'border-gray-200/90 bg-white hover:border-gray-300'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full text-left p-5 md:p-6 flex items-center justify-between gap-4 select-none focus:outline-none"
-                >
-                  <span className="font-heading font-bold text-base md:text-lg text-ink">
-                    {faq.q}
-                  </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'bg-indigo text-white rotate-180' : 'bg-gray-100 text-ink'
-                    }`}
+            {/* Title */}
+            <h2 className="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-ink leading-[1.1]">
+              Frequently <br />
+              <span className="text-indigo">asked</span> <br />
+              questions
+            </h2>
+
+            <p className="font-sans text-gray-500 text-sm md:text-base leading-relaxed max-w-sm pt-2">
+              Punya pertanyaan seputar proses sablon, estimasi waktu, atau konsultasi desain? Temukan jawabannya di sini.
+            </p>
+          </motion.div>
+
+
+          {/* ================= SISI KANAN (MINIMALIST ACCORDION LIST) ================= */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-7 divide-y divide-gray-200/80 border-y border-gray-200/80"
+          >
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
+              return (
+                <div key={index} className="py-6 sm:py-7 group transition-colors">
+                  <button
+                    type="button"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    className="w-full text-left flex items-start justify-between gap-6 select-none focus:outline-none"
                   >
-                    <ChevronDown size={18} />
-                  </div>
-                </button>
+                    <span className={`font-heading font-bold text-base sm:text-lg md:text-xl transition-colors duration-200 ${
+                      isOpen ? 'text-indigo' : 'text-ink group-hover:text-indigo'
+                    }`}>
+                      {faq.q}
+                    </span>
 
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-5 pb-6 md:px-6 pt-0 text-gray-600 font-sans text-sm md:text-base leading-relaxed border-t border-gray-100 mt-2 pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+                    <span className="shrink-0 mt-1 text-gray-400 group-hover:text-indigo transition-colors duration-200">
+                      {isOpen ? (
+                        <Minus size={20} className="text-indigo" />
+                      ) : (
+                        <Plus size={20} />
+                      )}
+                    </span>
+                  </button>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="font-sans text-gray-600 text-sm sm:text-base leading-relaxed pt-3 pr-8">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </motion.div>
+
         </div>
       </div>
     </section>
