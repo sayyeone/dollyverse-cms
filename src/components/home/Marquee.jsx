@@ -3,18 +3,18 @@
 import { useReducedMotion } from '../../hooks/useReducedMotion'
 
 const marqueeItems = [
-  { text: 'DOLLYVERSE', isArrow: false },
-  { text: '<<<', isArrow: true },
-  { text: 'SABLON DIGITAL MURAH', isArrow: false },
-  { text: '>>>', isArrow: true },
-  { text: 'DESAIN OTENTIK', isArrow: false },
-  { text: '<<<', isArrow: true },
-  { text: 'DARI KAMPUNG DOLLY', isArrow: false },
-  { text: '>>>', isArrow: true },
-  { text: 'KAOS CUSTOM SATUAN', isArrow: false },
-  { text: '<<<', isArrow: true },
-  { text: 'MERCHANDISE TERJANGKAU', isArrow: false },
-  { text: '>>>', isArrow: true },
+  'DOLLYVERSE',
+  '★',
+  'SABLON DIGITAL MURAH',
+  '★',
+  'DESAIN OTENTIK',
+  '★',
+  'DARI KAMPUNG DOLLY',
+  '★',
+  'KAOS CUSTOM SATUAN',
+  '★',
+  'MERCHANDISE TERJANGKAU',
+  '★',
 ]
 
 export default function Marquee() {
@@ -22,20 +22,23 @@ export default function Marquee() {
 
   const renderTrack = (keyPrefix) => (
     <div key={keyPrefix} className="flex shrink-0 items-center">
-      {marqueeItems.map((item, i) => (
-        <span
-          key={`${keyPrefix}-${i}`}
-          className={`whitespace-nowrap font-heading font-extrabold uppercase text-xs md:text-sm tracking-widest px-4 ${
-            item.isArrow
-              ? 'text-gold'
-              : item.text === 'DOLLYVERSE'
-              ? 'text-white'
-              : 'text-white/70'
-          }`}
-        >
-          {item.text}
-        </span>
-      ))}
+      {marqueeItems.map((text, i) => {
+        const isStar = text === '★'
+        return (
+          <span
+            key={`${keyPrefix}-${i}`}
+            className={`whitespace-nowrap font-heading font-extrabold uppercase text-xs md:text-sm tracking-widest px-4 ${
+              isStar
+                ? 'text-gold text-sm md:text-base'
+                : text === 'DOLLYVERSE'
+                ? 'text-white'
+                : 'text-white/70'
+            }`}
+          >
+            {text}
+          </span>
+        )
+      })}
     </div>
   )
 
