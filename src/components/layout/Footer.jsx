@@ -1,7 +1,35 @@
 'use client';
 
 import Link from 'next/link'
-import { Instagram, Youtube, MessageCircle, MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MessageCircle, MapPin, Phone, Mail, Clock } from 'lucide-react'
+
+// Custom SVG Icons for Brands (Instagram, TikTok, YouTube)
+function InstagramIcon({ size = 16, className = "" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+    </svg>
+  );
+}
+
+function YoutubeIcon({ size = 16, className = "" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+      <polygon points="10 15 15 12 10 9 10 15"/>
+    </svg>
+  );
+}
+
+function TiktokIcon({ size = 16, className = "" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+    </svg>
+  );
+}
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -10,7 +38,7 @@ export default function Footer() {
     <footer className="bg-[#0B0C10] border-t border-white/10 text-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8 pt-16 pb-12">
         
-        {/* Main 4-Column Grid */}
+        {/* Main 5-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
           
           {/* Col 1: Brand Info (lg:col-span-4) */}
@@ -36,7 +64,7 @@ export default function Footer() {
                 aria-label="Instagram Dollyverse"
                 className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#8A63FF] hover:border-[#8A63FF] transition-all duration-200"
               >
-                <Instagram size={16} />
+                <InstagramIcon size={16} />
               </a>
               <a
                 href="https://tiktok.com/@dollyverse"
@@ -45,7 +73,7 @@ export default function Footer() {
                 aria-label="TikTok Dollyverse"
                 className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#8A63FF] hover:border-[#8A63FF] transition-all duration-200"
               >
-                <span className="font-bold text-xs select-none">♪</span>
+                <TiktokIcon size={15} />
               </a>
               <a
                 href="https://youtube.com/@dollyverse"
@@ -54,7 +82,7 @@ export default function Footer() {
                 aria-label="YouTube Dollyverse"
                 className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-[#8A63FF] hover:border-[#8A63FF] transition-all duration-200"
               >
-                <Youtube size={16} />
+                <YoutubeIcon size={16} />
               </a>
               <a
                 href="https://wa.me/6281234567890"
@@ -139,7 +167,7 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar: Copyright & Tagline */}
+        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-white/40">
           <p>© {year} KUB Dollyverse. Semua hak dilindungi.</p>
           <div className="flex items-center gap-2">
